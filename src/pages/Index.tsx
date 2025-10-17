@@ -57,46 +57,6 @@ const Index = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-20 max-w-4xl mx-auto">
             
-            {/* Templates Section */}
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <h2 className="text-3xl sm:text-4xl font-bold">
-                  FREE UX RESEARCH TEMPLATES
-                </h2>
-                <p className="text-lg text-muted-foreground">
-                  Download professionally crafted templates to accelerate your research workflow.
-                </p>
-              </div>
-              
-              <div className="space-y-6">
-                {templateCategories.map((category, index) => (
-                  <Card key={index} className="card-hover border-2">
-                    <CardHeader>
-                      <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 border-2 border-foreground flex items-center justify-center flex-shrink-0">
-                          <category.icon className="h-6 w-6" />
-                        </div>
-                        <div className="space-y-1">
-                          <CardTitle className="text-lg uppercase">{category.title}</CardTitle>
-                          <CardDescription>{category.description}</CardDescription>
-                          <div className="text-xs font-bold pt-1">
-                            {category.count} TEMPLATES
-                          </div>
-                        </div>
-                      </div>
-                    </CardHeader>
-                  </Card>
-                ))}
-              </div>
-
-              <Link to="/templates">
-                <Button size="lg" className="gap-2 group w-full border-2">
-                  Browse All Templates
-                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
-            </div>
-
             {/* About Section */}
             <div className="space-y-8">
               <div className="space-y-4">
@@ -148,6 +108,46 @@ const Index = () => {
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* Templates Section */}
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <h2 className="text-3xl sm:text-4xl font-bold">
+                  FREE UX RESEARCH TEMPLATES
+                </h2>
+                <p className="text-lg text-muted-foreground">
+                  Download professionally crafted templates to accelerate your research workflow.
+                </p>
+              </div>
+              
+              <div className="space-y-6">
+                {templateCategories.map((category, index) => (
+                  <Card key={index} className="card-hover border-2">
+                    <CardHeader>
+                      <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 border-2 border-foreground flex items-center justify-center flex-shrink-0">
+                          <category.icon className="h-6 w-6" />
+                        </div>
+                        <div className="space-y-1">
+                          <CardTitle className="text-lg uppercase">{category.title}</CardTitle>
+                          <CardDescription>{category.description}</CardDescription>
+                          <div className="text-xs font-bold pt-1">
+                            {category.count} TEMPLATES
+                          </div>
+                        </div>
+                      </div>
+                    </CardHeader>
+                  </Card>
+                ))}
+              </div>
+
+              <Link to="/templates">
+                <Button size="lg" className="gap-2 group w-full border-2">
+                  Browse All Templates
+                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
             </div>
 
             {/* CTA Section */}
