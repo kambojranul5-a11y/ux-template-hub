@@ -70,7 +70,7 @@ const Index = () => {
               
               <div className="space-y-4 text-foreground/80">
                 <p>
-                  I'm a UX researcher with 5+ years of experience helping companies build products that people love. 
+                  I'm a UX researcher helping companies build products that people love. 
                   My approach combines rigorous research methodology with creative problem-solving to uncover actionable insights.
                 </p>
                 <p>
