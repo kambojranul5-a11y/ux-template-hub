@@ -20,10 +20,10 @@ const Navigation = () => {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="h-8 w-8 rounded-lg hero-gradient flex items-center justify-center">
-              <span className="text-white font-bold text-lg">U</span>
+            <div className="h-8 w-8 border-2 border-foreground flex items-center justify-center">
+              <span className="font-bold text-lg">U</span>
             </div>
-            <span className="font-semibold text-lg hidden sm:inline-block">UX Researcher</span>
+            <span className="font-bold text-lg hidden sm:inline-block">UX RESEARCHER</span>
           </Link>
 
           {/* Desktop Navigation */}

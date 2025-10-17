@@ -69,13 +69,13 @@ const Templates = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="hero-gradient text-white py-20">
+      <section className="hero-section text-background py-20 border-b-4 border-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center space-y-4">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold">
-              UX Research Templates
+              UX RESEARCH TEMPLATES
             </h1>
-            <p className="text-lg sm:text-xl text-white/90">
+            <p className="text-lg sm:text-xl opacity-90">
               Free, ready-to-use templates to streamline your research process
             </p>
           </div>
@@ -137,11 +137,11 @@ const Templates = () => {
       {/* Footer CTA */}
       <section className="section-alt border-t border-border py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <h2 className="text-2xl sm:text-3xl font-bold">Need a Custom Template?</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold">NEED A CUSTOM TEMPLATE?</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Can't find what you're looking for? Get in touch and I'll create a template tailored to your needs.
           </p>
-          <Button size="lg" variant="default" className="gap-2">
+          <Button size="lg" variant="default" className="gap-2 border-2">
             Contact Me
           </Button>
         </div>
