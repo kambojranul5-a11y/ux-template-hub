@@ -39,7 +39,7 @@ All colors MUST be HSL.
     --radius: 0rem;
 
     --section-bg: 0 0% 98%;
-    --hero-bg: 210 100% 98%;
+    --hero-bg: 0 0% 100%;
   }
 
   .dark {
@@ -72,7 +72,7 @@ All colors MUST be HSL.
     --ring: 0 0% 95%;
     
     --section-bg: 0 0% 12%;
-    --hero-bg: 210 20% 15%;
+    --hero-bg: 0 0% 10%;
   }
 }
 
