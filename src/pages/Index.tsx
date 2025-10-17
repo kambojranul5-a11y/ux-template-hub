@@ -5,21 +5,24 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const Index = () => {
-  const projects = [
+  const templateCategories = [
     {
-      title: "E-commerce Redesign",
-      description: "Led comprehensive UX research for a major retail platform, improving conversion rates by 35%.",
-      category: "Usability Testing",
+      title: "Research Templates",
+      description: "Interview guides, survey designs, and research planning templates to streamline your discovery process.",
+      icon: Users,
+      count: 6,
     },
     {
-      title: "Healthcare App Study",
-      description: "Conducted user interviews and journey mapping for a patient portal, enhancing user satisfaction scores.",
-      category: "User Research",
+      title: "Testing Protocols",
+      description: "Usability testing scripts, observation frameworks, and evaluation checklists.",
+      icon: BookOpen,
+      count: 4,
     },
     {
-      title: "SaaS Onboarding",
-      description: "Researched and optimized onboarding flows, reducing time-to-value by 50% for new users.",
-      category: "UX Analysis",
+      title: "Analysis & Reporting",
+      description: "Persona templates, journey maps, and professional research report formats.",
+      icon: Download,
+      count: 5,
     },
   ];
 
@@ -103,31 +106,57 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Featured Work */}
+      {/* Templates Showcase */}
       <section className="section-alt py-20 sm:py-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto space-y-12">
             <div className="text-center space-y-4">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
-                Featured Work
+                Free UX Research Templates
               </h2>
-              <p className="text-lg text-muted-foreground">
-                Recent projects showcasing research impact
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Download professionally crafted templates to accelerate your research workflow. 
+                All templates are free and ready to use.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {projects.map((project, index) => (
-                <Card key={index} className="card-hover">
-                  <CardHeader>
-                    <div className="text-sm text-primary font-medium mb-2">{project.category}</div>
-                    <CardTitle className="text-xl">{project.title}</CardTitle>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {templateCategories.map((category, index) => (
+                <Card key={index} className="card-hover text-center">
+                  <CardHeader className="space-y-4">
+                    <div className="w-16 h-16 rounded-full hero-gradient mx-auto flex items-center justify-center">
+                      <category.icon className="h-8 w-8 text-white" />
+                    </div>
+                    <CardTitle className="text-xl">{category.title}</CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <CardDescription>{project.description}</CardDescription>
+                  <CardContent className="space-y-4">
+                    <CardDescription className="text-base">{category.description}</CardDescription>
+                    <div className="text-sm font-medium text-primary">
+                      {category.count} templates available
+                    </div>
                   </CardContent>
                 </Card>
               ))}
             </div>
+            <div className="text-center pt-6">
+              <Link to="/templates">
+                <Button size="lg" className="gap-2 group">
+                  Browse All Templates
+                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Brief Experience Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center space-y-4">
+            <p className="text-lg text-muted-foreground">
+              With 5+ years of experience in UX research across e-commerce, healthcare, and SaaS industries, 
+              I've conducted hundreds of user interviews and usability tests to help teams build better products.
+            </p>
           </div>
         </div>
       </section>
