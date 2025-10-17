@@ -4,6 +4,12 @@ import Navigation from "@/components/Navigation";
 import TemplateCard, { Template } from "@/components/TemplateCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import templateInterview from "@/assets/template-interview.png";
+import templateUsability from "@/assets/template-usability.png";
+import templateSurvey from "@/assets/template-survey.png";
+import templatePersona from "@/assets/template-persona.png";
+import templateJourney from "@/assets/template-journey.png";
+import templateResearchPlan from "@/assets/template-research-plan.png";
 
 // Mock data - replace with actual data source later
 const mockTemplates: Template[] = [
@@ -13,6 +19,7 @@ const mockTemplates: Template[] = [
     description: "A comprehensive template for conducting structured user interviews with prepared questions and note-taking sections.",
     category: "Research",
     downloadCount: 234,
+    imageUrl: templateInterview,
   },
   {
     id: "2",
@@ -20,6 +27,7 @@ const mockTemplates: Template[] = [
     description: "Complete testing protocol including task scenarios, success metrics, and observation guidelines.",
     category: "Testing",
     downloadCount: 189,
+    imageUrl: templateUsability,
   },
   {
     id: "3",
@@ -27,6 +35,7 @@ const mockTemplates: Template[] = [
     description: "Create detailed user personas with demographics, goals, pain points, and behavioral patterns.",
     category: "Analysis",
     downloadCount: 312,
+    imageUrl: templatePersona,
   },
   {
     id: "4",
@@ -34,6 +43,7 @@ const mockTemplates: Template[] = [
     description: "Map out user journeys with touchpoints, emotions, and opportunities for improvement.",
     category: "Mapping",
     downloadCount: 267,
+    imageUrl: templateJourney,
   },
   {
     id: "5",
@@ -41,6 +51,7 @@ const mockTemplates: Template[] = [
     description: "Professional template for presenting research insights and actionable recommendations.",
     category: "Reporting",
     downloadCount: 156,
+    imageUrl: templateResearchPlan,
   },
   {
     id: "6",
@@ -48,6 +59,7 @@ const mockTemplates: Template[] = [
     description: "Best practices and structure for creating effective user surveys with various question types.",
     category: "Research",
     downloadCount: 198,
+    imageUrl: templateSurvey,
   },
 ];
 
