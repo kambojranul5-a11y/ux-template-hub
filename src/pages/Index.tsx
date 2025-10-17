@@ -150,25 +150,23 @@ const Index = () => {
               </div>
             </div>
 
-          </div>
-        </div>
-      </section>
+            {/* CTA Section */}
+            <div className="space-y-6 pt-12">
+              <h2 className="text-3xl sm:text-4xl font-bold text-center">
+                LET'S WORK TOGETHER
+              </h2>
+              <p className="text-lg text-muted-foreground text-center">
+                Looking for a UX researcher to help improve your product? 
+                I'd love to hear about your project and discuss how research can make a difference.
+              </p>
+              <div className="flex justify-center">
+                <Button size="lg" className="gap-2">
+                  Get in Touch
+                  <ArrowRight className="h-5 w-5" />
+                </Button>
+              </div>
+            </div>
 
-      {/* CTA Section */}
-      <section className="py-20 sm:py-32">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
-              LET'S WORK TOGETHER
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Looking for a UX researcher to help improve your product? 
-              I'd love to hear about your project and discuss how research can make a difference.
-            </p>
-            <Button size="lg" className="gap-2">
-              Get in Touch
-              <ArrowRight className="h-5 w-5" />
-            </Button>
           </div>
         </div>
       </section>
