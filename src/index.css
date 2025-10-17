@@ -92,7 +92,7 @@ All colors MUST be HSL.
 
 @layer utilities {
   .hero-section {
-    @apply bg-[hsl(var(--hero-bg))] text-foreground;
+    @apply bg-[hsl(var(--hero-bg))] text-muted-foreground;
   }
 
   .card-hover {

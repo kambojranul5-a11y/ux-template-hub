@@ -42,7 +42,7 @@ const Index = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Link to="/templates">
-                <Button size="lg" className="gap-2 group border-2">
+                <Button size="lg" variant="outline" className="gap-2 group border-2 border-muted-foreground text-muted-foreground hover:bg-muted hover:text-foreground">
                   Browse Templates
                   <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
