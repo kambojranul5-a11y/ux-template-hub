@@ -57,106 +57,104 @@ const Index = () => {
         </div>
       </section>
 
-      {/* About Section */}
+      {/* Main Content - Side by Side */}
       <section className="py-20 sm:py-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto space-y-8">
-            <div className="text-center space-y-4">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
-                About Me
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Passionate about understanding users and solving complex problems
-              </p>
-            </div>
-            <div className="prose prose-lg max-w-none space-y-4 text-foreground/80">
-              <p>
-                I'm a UX researcher with 5+ years of experience helping companies build products that people love. 
-                My approach combines rigorous research methodology with creative problem-solving to uncover actionable insights.
-              </p>
-              <p>
-                I specialize in user interviews, usability testing, survey design, and journey mapping. 
-                My work has helped organizations improve their products, increase user satisfaction, and drive business results.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8">
-              <div className="text-center space-y-2">
-                <div className="w-12 h-12 border-2 border-foreground mx-auto flex items-center justify-center">
-                  <Users className="h-6 w-6" />
-                </div>
-                <div className="text-3xl font-bold">200+</div>
-                <div className="text-sm text-muted-foreground">USER INTERVIEWS</div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 max-w-7xl mx-auto">
+            
+            {/* Templates Section */}
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <h2 className="text-3xl sm:text-4xl font-bold">
+                  FREE UX RESEARCH TEMPLATES
+                </h2>
+                <p className="text-lg text-muted-foreground">
+                  Download professionally crafted templates to accelerate your research workflow.
+                </p>
               </div>
-              <div className="text-center space-y-2">
-                <div className="w-12 h-12 border-2 border-foreground mx-auto flex items-center justify-center">
-                  <BookOpen className="h-6 w-6" />
-                </div>
-                <div className="text-3xl font-bold">50+</div>
-                <div className="text-sm text-muted-foreground">RESEARCH PROJECTS</div>
+              
+              <div className="space-y-6">
+                {templateCategories.map((category, index) => (
+                  <Card key={index} className="card-hover border-2">
+                    <CardHeader>
+                      <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 border-2 border-foreground flex items-center justify-center flex-shrink-0">
+                          <category.icon className="h-6 w-6" />
+                        </div>
+                        <div className="space-y-1">
+                          <CardTitle className="text-lg uppercase">{category.title}</CardTitle>
+                          <CardDescription>{category.description}</CardDescription>
+                          <div className="text-xs font-bold pt-1">
+                            {category.count} TEMPLATES
+                          </div>
+                        </div>
+                      </div>
+                    </CardHeader>
+                  </Card>
+                ))}
               </div>
-              <div className="text-center space-y-2">
-                <div className="w-12 h-12 border-2 border-foreground mx-auto flex items-center justify-center">
-                  <Download className="h-6 w-6" />
-                </div>
-                <div className="text-3xl font-bold">15+</div>
-                <div className="text-sm text-muted-foreground">FREE TEMPLATES</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Templates Showcase */}
-      <section className="section-alt py-20 sm:py-32">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto space-y-12">
-            <div className="text-center space-y-4">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
-                FREE UX RESEARCH TEMPLATES
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Download professionally crafted templates to accelerate your research workflow. 
-                All templates are free and ready to use.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {templateCategories.map((category, index) => (
-                <Card key={index} className="card-hover text-center border-2">
-                  <CardHeader className="space-y-4">
-                    <div className="w-16 h-16 border-2 border-foreground mx-auto flex items-center justify-center">
-                      <category.icon className="h-8 w-8" />
-                    </div>
-                    <CardTitle className="text-xl uppercase">{category.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <CardDescription className="text-base">{category.description}</CardDescription>
-                    <div className="text-sm font-bold">
-                      {category.count} TEMPLATES AVAILABLE
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-            <div className="text-center pt-6">
               <Link to="/templates">
-                <Button size="lg" className="gap-2 group">
+                <Button size="lg" className="gap-2 group w-full border-2">
                   Browse All Templates
                   <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Brief Experience Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center space-y-4">
-            <p className="text-lg text-muted-foreground">
-              With 5+ years of experience in UX research across e-commerce, healthcare, and SaaS industries, 
-              I've conducted hundreds of user interviews and usability tests to help teams build better products.
-            </p>
+            {/* About Section */}
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <h2 className="text-3xl sm:text-4xl font-bold">
+                  ABOUT ME
+                </h2>
+                <p className="text-lg text-muted-foreground">
+                  Passionate about understanding users and solving complex problems
+                </p>
+              </div>
+              
+              <div className="space-y-4 text-foreground/80">
+                <p>
+                  I'm a UX researcher with 5+ years of experience helping companies build products that people love. 
+                  My approach combines rigorous research methodology with creative problem-solving to uncover actionable insights.
+                </p>
+                <p>
+                  I specialize in user interviews, usability testing, survey design, and journey mapping. 
+                  My work has helped organizations improve their products, increase user satisfaction, and drive business results.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 gap-6 pt-4">
+                <div className="flex items-center gap-4 p-4 border-2 border-border">
+                  <div className="w-12 h-12 border-2 border-foreground flex items-center justify-center flex-shrink-0">
+                    <Users className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold">200+</div>
+                    <div className="text-sm text-muted-foreground">USER INTERVIEWS</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-4 border-2 border-border">
+                  <div className="w-12 h-12 border-2 border-foreground flex items-center justify-center flex-shrink-0">
+                    <BookOpen className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold">50+</div>
+                    <div className="text-sm text-muted-foreground">RESEARCH PROJECTS</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-4 border-2 border-border">
+                  <div className="w-12 h-12 border-2 border-foreground flex items-center justify-center flex-shrink-0">
+                    <Download className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold">15+</div>
+                    <div className="text-sm text-muted-foreground">FREE TEMPLATES</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
