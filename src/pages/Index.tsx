@@ -41,12 +41,12 @@ const Index = () => {
               A UX Researcher specializing in qualitative and quantitative research methods to create user-centered digital products. I help teams understand their users deeply and transform insights into exceptional experiences.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Link to="/templates">
-                <Button size="lg" className="gap-2 group border-2">
-                  Browse Templates
-                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
+          <Link to="/about">
+            <Button size="lg" className="gap-2 group border-2">
+              Browse Templates
+              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
             </div>
           </div>
         </div>
@@ -142,7 +142,7 @@ const Index = () => {
                 ))}
               </div>
 
-              <Link to="/templates">
+              <Link to="/">
                 <Button size="lg" className="gap-2 group w-full border-2">
                   Browse All Templates
                   <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />

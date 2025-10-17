@@ -81,14 +81,14 @@ const Templates = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="hero-section text-background py-20 border-b-4 border-background">
+      <section className="hero-section py-20 border-b-4 border-border">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center space-y-4">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold">
-              UX RESEARCH TEMPLATES
+              HI! I AM RANUL
             </h1>
             <p className="text-lg sm:text-xl opacity-90">
-              Free, ready-to-use templates to streamline your research process
+              Here are free UX research templates to streamline your research process
             </p>
           </div>
         </div>

@@ -8,8 +8,8 @@ const Navigation = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { path: "/", label: "Home", icon: Home },
-    { path: "/templates", label: "Templates", icon: FileText },
+    { path: "/", label: "Templates", icon: FileText },
+    { path: "/about", label: "About", icon: Home },
   ];
 
   const isActive = (path: string) => location.pathname === path;
