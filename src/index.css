@@ -39,6 +39,7 @@ All colors MUST be HSL.
     --radius: 0rem;
 
     --section-bg: 0 0% 98%;
+    --hero-bg: 210 100% 98%;
   }
 
   .dark {
@@ -71,6 +72,7 @@ All colors MUST be HSL.
     --ring: 0 0% 95%;
     
     --section-bg: 0 0% 12%;
+    --hero-bg: 210 20% 15%;
   }
 }
 
@@ -90,7 +92,7 @@ All colors MUST be HSL.
 
 @layer utilities {
   .hero-section {
-    @apply bg-foreground text-background;
+    @apply bg-[hsl(var(--hero-bg))] text-foreground;
   }
 
   .card-hover {

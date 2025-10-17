@@ -31,27 +31,22 @@ const Index = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="hero-section py-20 sm:py-32 border-b-4 border-background">
+      <section className="hero-section py-20 sm:py-32 border-b-4 border-border">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight">
-              TURNING USER INSIGHTS INTO
-              <span className="block mt-2">EXCEPTIONAL EXPERIENCES</span>
+              HI! I AM RANUL
             </h1>
             <p className="text-lg sm:text-xl max-w-2xl mx-auto opacity-90">
-              UX Researcher specializing in qualitative and quantitative research methods to create user-centered digital products.
+              A UX Researcher specializing in qualitative and quantitative research methods to create user-centered digital products. I help teams understand their users deeply and transform insights into exceptional experiences.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Link to="/templates">
-                <Button size="lg" variant="outline" className="gap-2 group border-2 bg-transparent hover:bg-background hover:text-foreground">
+                <Button size="lg" className="gap-2 group border-2">
                   Browse Templates
                   <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
-              <Button size="lg" variant="secondary" className="gap-2 border-2">
-                <Download className="h-5 w-5" />
-                Download Resume
-              </Button>
             </div>
           </div>
         </div>
