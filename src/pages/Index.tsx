@@ -31,7 +31,7 @@ const Index = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="hero-section py-20 sm:py-32 border-b-4 border-border">
+      <section className="hero-section pt-20 pb-12 sm:pt-32 sm:pb-16 border-b-4 border-border">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight">
@@ -53,7 +53,7 @@ const Index = () => {
       </section>
 
       {/* Main Content - Vertical */}
-      <section className="py-20 sm:py-32">
+      <section className="pt-12 pb-20 sm:pt-16 sm:pb-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-20 max-w-4xl mx-auto">
             
