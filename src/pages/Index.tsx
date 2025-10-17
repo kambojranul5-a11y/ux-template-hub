@@ -57,10 +57,10 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Main Content - Side by Side */}
+      {/* Main Content - Vertical */}
       <section className="py-20 sm:py-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 max-w-7xl mx-auto">
+          <div className="space-y-20 max-w-4xl mx-auto">
             
             {/* Templates Section */}
             <div className="space-y-8">
