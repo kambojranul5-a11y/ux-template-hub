@@ -1,0 +1,153 @@
+import { useState } from "react";
+import { Search } from "lucide-react";
+import Navigation from "@/components/Navigation";
+import TemplateCard, { Template } from "@/components/TemplateCard";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+
+// Mock data - replace with actual data source later
+const mockTemplates: Template[] = [
+  {
+    id: "1",
+    title: "User Interview Guide",
+    description: "A comprehensive template for conducting structured user interviews with prepared questions and note-taking sections.",
+    category: "Research",
+    downloadCount: 234,
+  },
+  {
+    id: "2",
+    title: "Usability Testing Protocol",
+    description: "Complete testing protocol including task scenarios, success metrics, and observation guidelines.",
+    category: "Testing",
+    downloadCount: 189,
+  },
+  {
+    id: "3",
+    title: "Persona Development Template",
+    description: "Create detailed user personas with demographics, goals, pain points, and behavioral patterns.",
+    category: "Analysis",
+    downloadCount: 312,
+  },
+  {
+    id: "4",
+    title: "Journey Mapping Framework",
+    description: "Map out user journeys with touchpoints, emotions, and opportunities for improvement.",
+    category: "Mapping",
+    downloadCount: 267,
+  },
+  {
+    id: "5",
+    title: "Research Findings Report",
+    description: "Professional template for presenting research insights and actionable recommendations.",
+    category: "Reporting",
+    downloadCount: 156,
+  },
+  {
+    id: "6",
+    title: "Survey Design Template",
+    description: "Best practices and structure for creating effective user surveys with various question types.",
+    category: "Research",
+    downloadCount: 198,
+  },
+];
+
+const Templates = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+
+  const categories = ["All", ...Array.from(new Set(mockTemplates.map((t) => t.category)))];
+
+  const filteredTemplates = mockTemplates.filter((template) => {
+    const matchesSearch = template.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         template.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = selectedCategory === "All" || template.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Navigation />
+
+      {/* Hero Section */}
+      <section className="hero-gradient text-white py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center space-y-4">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold">
+              UX Research Templates
+            </h1>
+            <p className="text-lg sm:text-xl text-white/90">
+              Free, ready-to-use templates to streamline your research process
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Search & Filter Section */}
+      <section className="section-alt py-8 border-b border-border">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto space-y-4">
+            {/* Search Bar */}
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="Search templates..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 h-12"
+              />
+            </div>
+
+            {/* Category Filter */}
+            <div className="flex flex-wrap gap-2">
+              {categories.map((category) => (
+                <Button
+                  key={category}
+                  variant={selectedCategory === category ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedCategory(category)}
+                >
+                  {category}
+                </Button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Templates Grid */}
+      <section className="flex-1 py-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {filteredTemplates.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredTemplates.map((template) => (
+                <TemplateCard key={template.id} template={template} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground text-lg">
+                No templates found matching your criteria.
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Footer CTA */}
+      <section className="section-alt border-t border-border py-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+          <h2 className="text-2xl sm:text-3xl font-bold">Need a Custom Template?</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Can't find what you're looking for? Get in touch and I'll create a template tailored to your needs.
+          </p>
+          <Button size="lg" variant="default" className="gap-2">
+            Contact Me
+          </Button>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Templates;
