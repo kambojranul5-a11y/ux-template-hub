@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
-import { toast } from "sonner";
+import { toast } from "@/hooks/use-toast";
 
 export interface Template {
   id: string;
@@ -45,11 +45,18 @@ const TemplateCard = ({ template }: TemplateCardProps) => {
       if (error) {
         console.error('Failed to track download:', error);
       } else {
-        toast.success('Template downloaded successfully!');
+        toast({
+          title: "Success",
+          description: "Template downloaded successfully!",
+        });
       }
     } catch (error) {
       console.error('Download failed:', error);
-      toast.error('Failed to download template');
+      toast({
+        title: "Error",
+        description: "Failed to download template",
+        variant: "destructive",
+      });
     }
   };
 
