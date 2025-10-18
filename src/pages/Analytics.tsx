@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { BarChart, Download, TrendingUp } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
 
 interface DownloadStats {
   totalDownloads: number;
@@ -20,12 +22,21 @@ const templateTitles: Record<string, string> = {
 };
 
 const Analytics = () => {
+  const navigate = useNavigate();
+  const { isAdmin, loading: authLoading } = useAuth();
   const [stats, setStats] = useState<DownloadStats>({
     totalDownloads: 0,
     downloadsByTemplate: [],
     recentDownloads: [],
   });
   const [loading, setLoading] = useState(true);
+
+  // Redirect non-admin users
+  useEffect(() => {
+    if (!authLoading && !isAdmin) {
+      navigate("/auth");
+    }
+  }, [isAdmin, authLoading, navigate]);
 
   useEffect(() => {
     const fetchDownloadStats = async () => {
@@ -94,6 +105,14 @@ const Analytics = () => {
   }, []);
 
   const maxDownloads = Math.max(...stats.downloadsByTemplate.map(t => t.count), 1);
+
+  if (authLoading || (!isAdmin && loading)) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-lg">Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col">

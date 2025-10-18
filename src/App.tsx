@@ -7,6 +7,7 @@ import { ThemeProvider } from "next-themes";
 import Index from "./pages/Index";
 import Templates from "./pages/Templates";
 import Analytics from "./pages/Analytics";
+import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 
 const App = () => (
@@ -19,6 +20,7 @@ const App = () => (
           <Route path="/" element={<Templates />} />
           <Route path="/about" element={<Index />} />
           <Route path="/analytics" element={<Analytics />} />
+          <Route path="/auth" element={<Auth />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
