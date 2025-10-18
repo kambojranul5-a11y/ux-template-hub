@@ -17,14 +17,39 @@ interface TemplateCardProps {
 }
 
 const TemplateCard = ({ template }: TemplateCardProps) => {
-  const handleDownload = () => {
-    // Placeholder for download functionality
-    console.log("Downloading template:", template.id);
+  const handleDownload = async () => {
+    if (!template.imageUrl) return;
+
+    try {
+      // Fetch the image
+      const response = await fetch(template.imageUrl);
+      const blob = await response.blob();
+      
+      // Create download link
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${template.title.toLowerCase().replace(/\s+/g, '-')}.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+
+      // Track download
+      const downloads = JSON.parse(localStorage.getItem('templateDownloads') || '{}');
+      downloads[template.id] = (downloads[template.id] || 0) + 1;
+      localStorage.setItem('templateDownloads', JSON.stringify(downloads));
+      
+      // Update display count
+      template.downloadCount++;
+    } catch (error) {
+      console.error('Download failed:', error);
+    }
   };
 
   const handlePreview = () => {
-    // Placeholder for preview functionality
-    console.log("Previewing template:", template.id);
+    if (!template.imageUrl) return;
+    window.open(template.imageUrl, '_blank');
   };
 
   return (
