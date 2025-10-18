@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { FileText, Home, Menu, X } from "lucide-react";
+import { BarChart, FileText, Home, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
@@ -9,6 +9,7 @@ const Navigation = () => {
 
   const navItems = [
     { path: "/", label: "Templates", icon: FileText },
+    { path: "/analytics", label: "Analytics", icon: BarChart },
     { path: "/about", label: "About", icon: Home },
   ];
 
