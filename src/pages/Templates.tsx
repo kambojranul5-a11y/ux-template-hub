@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import TemplateCard, { Template } from "@/components/TemplateCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
 import templateInterview from "@/assets/template-interview.png";
 import templateUsability from "@/assets/template-usability.png";
 import templateSurvey from "@/assets/template-survey.png";
@@ -66,10 +67,59 @@ const mockTemplates: Template[] = [
 const Templates = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [templates, setTemplates] = useState<Template[]>(mockTemplates);
 
-  const categories = ["All", ...Array.from(new Set(mockTemplates.map((t) => t.category)))];
+  // Fetch download counts from database
+  useEffect(() => {
+    const fetchDownloadCounts = async () => {
+      const { data, error } = await supabase
+        .from('template_downloads')
+        .select('template_id');
 
-  const filteredTemplates = mockTemplates.filter((template) => {
+      if (error) {
+        console.error('Error fetching downloads:', error);
+        return;
+      }
+
+      // Count downloads per template
+      const downloadCounts: Record<string, number> = {};
+      data.forEach((download) => {
+        downloadCounts[download.template_id] = (downloadCounts[download.template_id] || 0) + 1;
+      });
+
+      // Update templates with real download counts
+      setTemplates(mockTemplates.map(template => ({
+        ...template,
+        downloadCount: downloadCounts[template.id] || 0
+      })));
+    };
+
+    fetchDownloadCounts();
+
+    // Subscribe to real-time updates
+    const channel = supabase
+      .channel('template-downloads')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'template_downloads'
+        },
+        () => {
+          fetchDownloadCounts();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
+  const categories = ["All", ...Array.from(new Set(templates.map((t) => t.category)))];
+
+  const filteredTemplates = templates.filter((template) => {
     const matchesSearch = template.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          template.description.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = selectedCategory === "All" || template.category === selectedCategory;

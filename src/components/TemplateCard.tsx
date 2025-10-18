@@ -2,6 +2,8 @@ import { Download, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 export interface Template {
   id: string;
@@ -35,15 +37,19 @@ const TemplateCard = ({ template }: TemplateCardProps) => {
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
 
-      // Track download
-      const downloads = JSON.parse(localStorage.getItem('templateDownloads') || '{}');
-      downloads[template.id] = (downloads[template.id] || 0) + 1;
-      localStorage.setItem('templateDownloads', JSON.stringify(downloads));
-      
-      // Update display count
-      template.downloadCount++;
+      // Track download in database
+      const { error } = await supabase
+        .from('template_downloads')
+        .insert({ template_id: template.id });
+
+      if (error) {
+        console.error('Failed to track download:', error);
+      } else {
+        toast.success('Template downloaded successfully!');
+      }
     } catch (error) {
       console.error('Download failed:', error);
+      toast.error('Failed to download template');
     }
   };
 
