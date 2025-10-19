@@ -12,7 +12,6 @@ import templatePersona from "@/assets/template-persona.png";
 import templateJourney from "@/assets/template-journey.png";
 import templateResearchPlan from "@/assets/template-research-plan.png";
 
-// Mock data - replace with actual data source later
 const mockTemplates: Template[] = [
   {
     id: "1",
@@ -24,49 +23,32 @@ const mockTemplates: Template[] = [
   },
   {
     id: "2",
-    title: "Usability Testing Protocol",
-    description: "Complete testing protocol including task scenarios, success metrics, and observation guidelines.",
-    category: "Testing",
+    title: "Designer Led UX Research",
+    description: "A practical guide for designers to conduct their own UX research, including planning, execution, and synthesis frameworks.",
+    category: "Research",
     downloadCount: 189,
     imageUrl: templateUsability,
   },
   {
     id: "3",
-    title: "Persona Development Template",
-    description: "Create detailed user personas with demographics, goals, pain points, and behavioral patterns.",
-    category: "Analysis",
+    title: "UX Research Dovetail Analysis",
+    description: "Structured framework for analyzing research data in Dovetail, with templates for tagging, theming, and insight generation.",
+    category: "Research",
     downloadCount: 312,
     imageUrl: templatePersona,
   },
   {
     id: "4",
-    title: "Journey Mapping Framework",
-    description: "Map out user journeys with touchpoints, emotions, and opportunities for improvement.",
-    category: "Mapping",
+    title: "Find Your UX Research Method",
+    description: "Decision tree and framework to help you choose the right research method based on your goals, timeline, and resources.",
+    category: "Research",
     downloadCount: 267,
     imageUrl: templateJourney,
-  },
-  {
-    id: "5",
-    title: "Research Findings Report",
-    description: "Professional template for presenting research insights and actionable recommendations.",
-    category: "Reporting",
-    downloadCount: 156,
-    imageUrl: templateResearchPlan,
-  },
-  {
-    id: "6",
-    title: "Survey Design Template",
-    description: "Best practices and structure for creating effective user surveys with various question types.",
-    category: "Research",
-    downloadCount: 198,
-    imageUrl: templateSurvey,
   },
 ];
 
 const Templates = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [templates, setTemplates] = useState<Template[]>(mockTemplates);
 
   // Fetch download counts from database
@@ -117,13 +99,10 @@ const Templates = () => {
     };
   }, []);
 
-  const categories = ["All", ...Array.from(new Set(templates.map((t) => t.category)))];
-
   const filteredTemplates = templates.filter((template) => {
     const matchesSearch = template.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          template.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = selectedCategory === "All" || template.category === selectedCategory;
-    return matchesSearch && matchesCategory;
+    return matchesSearch;
   });
 
   return (
@@ -144,10 +123,9 @@ const Templates = () => {
         </div>
       </section>
 
-      {/* Search & Filter Section */}
       <section className="section-alt py-8 border-b border-border">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto space-y-4">
+          <div className="max-w-4xl mx-auto">
             {/* Search Bar */}
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -158,20 +136,6 @@ const Templates = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10 h-12"
               />
-            </div>
-
-            {/* Category Filter */}
-            <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
-                <Button
-                  key={category}
-                  variant={selectedCategory === category ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedCategory(category)}
-                >
-                  {category}
-                </Button>
-              ))}
             </div>
           </div>
         </div>
