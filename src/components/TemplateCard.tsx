@@ -24,18 +24,206 @@ const TemplateCard = ({ template }: TemplateCardProps) => {
   const [previewOpen, setPreviewOpen] = useState(false);
 
   const handleDownload = async () => {
-    if (!template.imageUrl) return;
-
     try {
-      // Fetch the image
-      const response = await fetch(template.imageUrl);
-      const blob = await response.blob();
+      let blob: Blob;
+      let filename: string;
+
+      // Special handling for UX Research Intake Template
+      if (template.id === "1") {
+        const content = `UX RESEARCH REQUEST INTAKE TEMPLATE
+
+1. REQUEST INFORMATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Date Submitted: _______________________________________________
+
+Requestor Name & Role: ________________________________________
+
+Team / Scrum Group: ____________________________________________
+
+Status: ☐ Submitted  ☐ In Review  ☐ Approved  ☐ Scheduled  ☐ Completed
+
+
+2. PROJECT BACKGROUND
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+What led you to request research now?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+Have you or your team conducted user research before?
+_________________________________________________________________
+_________________________________________________________________
+
+What customer problem/need is your proposed solution trying to solve?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+How do we know this is a customer problem/need? 
+(evidence, data, past research, analytics, market insights)
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+
+3. STRATEGIC FIT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Organizational or Strategic Impact:
+(How could this research benefit the wider org? Which teams will it help?)
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+Expected Outcome:
+(What decisions or actions should the research inform?)
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+How will you act on the insights? Who is ready to take action?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+
+4. RESEARCH FOCUS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Components / Features to Test:
+(e.g., Fraction Pieces mTool, Area Model mTool, Show More/Show Less Answer Reveal)
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+Research Questions / Objectives:
+
+What exactly do you want to learn?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+What hypotheses are being tested?
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+
+5. PARTICIPANTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Target Population:
+(e.g., mix of intervention and on-level students, specific teacher types, accessibility needs)
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+Recruitment Criteria:
+(demographics, experience level, grade, segment)
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+
+6. METHOD & INTERACTION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Study Approach:
+(usability testing, concept testing, interviews, diary study, card sorting, etc.)
+_________________________________________________________________
+_________________________________________________________________
+
+User Interaction Plan:
+(prototype walkthrough, live product tasks, hybrid Figma + interactive prototype)
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+Prototype Platform / Materials:
+_________________________________________________________________
+_________________________________________________________________
+
+
+7. TIMELINE & LOGISTICS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Target Date(s): _______________________________________________
+
+Lead Researcher / Designer: ___________________________________
+
+Supporting Stakeholders: ______________________________________
+
+Level of Support Needed:
+☐ Full research partnership  ☐ Quick deliverable (e.g., interview guide review)
+
+
+8. PREVIOUS & RELATED WORK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Prior Research Conducted:
+(link to user research, market research, A/B testing, analytics, BI)
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+Unanswered Questions Remaining:
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+
+9. ADDITIONAL NOTES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Other Solutions Considered:
+_________________________________________________________________
+_________________________________________________________________
+
+Special Considerations:
+(accessibility, technical constraints, deadlines)
+_________________________________________________________________
+_________________________________________________________________
+
+Other Information Important to Share:
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+WHY THIS TEMPLATE HELPS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ PRIORITIZATION: Makes it clear which studies align with strategy and have 
+  broad org impact.
+
+✓ EFFICIENCY: Reduces redundant meetings by front-loading details.
+
+✓ EDUCATION: Shows stakeholders the real scope of user research, beyond 
+  "just usability testing."
+
+✓ TIME MANAGEMENT: Protects researcher time by filtering and focusing requests.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+`;
+        blob = new Blob([content], { type: 'text/plain' });
+        filename = 'ux-research-intake-template.txt';
+      } else {
+        // For other templates, download the image
+        if (!template.imageUrl) return;
+        
+        const response = await fetch(template.imageUrl);
+        blob = await response.blob();
+        filename = `${template.title.toLowerCase().replace(/\s+/g, '-')}.png`;
+      }
       
       // Create download link
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.download = `${template.title.toLowerCase().replace(/\s+/g, '-')}.png`;
+      link.download = filename;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
