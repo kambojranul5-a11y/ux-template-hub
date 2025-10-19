@@ -16,8 +16,8 @@ import templateResearchPlan from "@/assets/template-research-plan.png";
 const mockTemplates: Template[] = [
   {
     id: "1",
-    title: "User Interview Guide",
-    description: "A comprehensive template for conducting structured user interviews with prepared questions and note-taking sections.",
+    title: "UX Research Intake Template",
+    description: "Comprehensive intake form for UX research requests - includes project background, strategic fit, research focus, timeline, and success criteria to prioritize and scope research effectively.",
     category: "Research",
     downloadCount: 234,
     imageUrl: templateInterview,
