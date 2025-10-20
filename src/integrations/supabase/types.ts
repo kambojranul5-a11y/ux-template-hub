@@ -14,6 +14,66 @@ export type Database = {
   }
   public: {
     Tables: {
+      page_views: {
+        Row: {
+          id: string
+          page_url: string
+          referrer: string | null
+          session_id: string
+          user_agent: string | null
+          viewed_at: string | null
+        }
+        Insert: {
+          id?: string
+          page_url: string
+          referrer?: string | null
+          session_id: string
+          user_agent?: string | null
+          viewed_at?: string | null
+        }
+        Update: {
+          id?: string
+          page_url?: string
+          referrer?: string | null
+          session_id?: string
+          user_agent?: string | null
+          viewed_at?: string | null
+        }
+        Relationships: []
+      }
+      sessions: {
+        Row: {
+          ended_at: string | null
+          first_page: string
+          id: string
+          is_bounce: boolean | null
+          last_activity_at: string | null
+          page_count: number | null
+          session_id: string
+          started_at: string | null
+        }
+        Insert: {
+          ended_at?: string | null
+          first_page: string
+          id?: string
+          is_bounce?: boolean | null
+          last_activity_at?: string | null
+          page_count?: number | null
+          session_id: string
+          started_at?: string | null
+        }
+        Update: {
+          ended_at?: string | null
+          first_page?: string
+          id?: string
+          is_bounce?: boolean | null
+          last_activity_at?: string | null
+          page_count?: number | null
+          session_id?: string
+          started_at?: string | null
+        }
+        Relationships: []
+      }
       template_downloads: {
         Row: {
           downloaded_at: string
@@ -58,6 +118,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_active_users: {
+        Args: Record<PropertyKey, never>
+        Returns: number
+      }
+      get_bounce_rate: {
+        Args: Record<PropertyKey, never>
+        Returns: number
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
