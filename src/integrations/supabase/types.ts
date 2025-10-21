@@ -74,6 +74,24 @@ export type Database = {
         }
         Relationships: []
       }
+      template_clicks: {
+        Row: {
+          clicked_at: string | null
+          id: string
+          template_id: string
+        }
+        Insert: {
+          clicked_at?: string | null
+          id?: string
+          template_id: string
+        }
+        Update: {
+          clicked_at?: string | null
+          id?: string
+          template_id?: string
+        }
+        Relationships: []
+      }
       template_downloads: {
         Row: {
           downloaded_at: string
