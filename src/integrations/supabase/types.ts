@@ -16,6 +16,7 @@ export type Database = {
     Tables: {
       page_views: {
         Row: {
+          country: string | null
           id: string
           page_url: string
           referrer: string | null
@@ -24,6 +25,7 @@ export type Database = {
           viewed_at: string | null
         }
         Insert: {
+          country?: string | null
           id?: string
           page_url: string
           referrer?: string | null
@@ -32,6 +34,7 @@ export type Database = {
           viewed_at?: string | null
         }
         Update: {
+          country?: string | null
           id?: string
           page_url?: string
           referrer?: string | null
@@ -43,6 +46,7 @@ export type Database = {
       }
       sessions: {
         Row: {
+          country: string | null
           ended_at: string | null
           first_page: string
           id: string
@@ -53,6 +57,7 @@ export type Database = {
           started_at: string | null
         }
         Insert: {
+          country?: string | null
           ended_at?: string | null
           first_page: string
           id?: string
@@ -63,6 +68,7 @@ export type Database = {
           started_at?: string | null
         }
         Update: {
+          country?: string | null
           ended_at?: string | null
           first_page?: string
           id?: string
