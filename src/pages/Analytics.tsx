@@ -16,7 +16,7 @@ const generateMonthlyBaselineData = () => {
   const annualTotals = {
     visitors: 72653,
     clicks: 110000,
-    downloads: 46800,
+    downloads: 50000,
   };
 
   // Growth pattern multipliers for each month (simulating seasonal trends + growth)
