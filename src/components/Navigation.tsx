@@ -13,6 +13,7 @@ const Navigation = () => {
 
   const navItems = [
     { path: "/", label: "Templates", icon: FileText, public: true },
+    // Analytics should not be public — only shown to admins. Route remains accessible by direct URL (/analytics).
     { path: "/analytics", label: "Analytics", icon: BarChart, public: false },
     { path: "/about", label: "About", icon: Home, public: true },
   ].filter(item => item.public || isAdmin);

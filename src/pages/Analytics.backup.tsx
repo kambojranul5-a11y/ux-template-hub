@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import TemplateCard, { Template } from "@/components/TemplateCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
-import { useAnalyticsTracking } from "@/hooks/useAnalyticsTracking";
 import templateInterview from "@/assets/template-interview.png";
 import templateUsability from "@/assets/template-usability.png";
 import templateSurvey from "@/assets/template-survey.png";
@@ -13,21 +12,13 @@ import templatePersona from "@/assets/template-persona.png";
 import templateJourney from "@/assets/template-journey.png";
 import templateResearchPlan from "@/assets/template-research-plan.png";
 
-// Baseline download counts (matches Analytics page baseline exactly)
-const BASELINE_DOWNLOADS: Record<string, number> = {
-  "1": 11100,  // Intake Template (24% of 46,800)
-  "2": 15200,  // Designer-Led (32% of 46,800)
-  "3": 9400,   // Dovetail Analysis (20% of 46,800)
-  "4": 11100,  // Research Method (24% of 46,800)
-};
-
 const mockTemplates: Template[] = [
   {
     id: "1",
     title: "UX Research Intake Template",
     description: "Comprehensive intake form for UX research requests - includes project background, strategic fit, research focus, timeline, and success criteria to prioritize and scope research effectively.",
     category: "Research",
-    downloadCount: BASELINE_DOWNLOADS["1"],
+    downloadCount: 234,
     imageUrl: templateInterview,
   },
   {
@@ -35,7 +26,7 @@ const mockTemplates: Template[] = [
     title: "Designer Led UX Research",
     description: "A practical guide for designers to conduct their own UX research, including planning, execution, and synthesis frameworks.",
     category: "Research",
-    downloadCount: BASELINE_DOWNLOADS["2"],
+    downloadCount: 189,
     imageUrl: templateUsability,
   },
   {
@@ -43,7 +34,7 @@ const mockTemplates: Template[] = [
     title: "UX Research Dovetail Analysis",
     description: "Structured framework for analyzing research data in Dovetail, with templates for tagging, theming, and insight generation.",
     category: "Research",
-    downloadCount: BASELINE_DOWNLOADS["3"],
+    downloadCount: 312,
     imageUrl: templatePersona,
   },
   {
@@ -51,15 +42,12 @@ const mockTemplates: Template[] = [
     title: "Find Your UX Research Method",
     description: "Decision tree and framework to help you choose the right research method based on your goals, timeline, and resources.",
     category: "Research",
-    downloadCount: BASELINE_DOWNLOADS["4"],
+    downloadCount: 267,
     imageUrl: templateJourney,
   },
 ];
 
 const Templates = () => {
-  // Track this page visit
-  useAnalyticsTracking('Templates');
-
   const [searchQuery, setSearchQuery] = useState("");
   const [templates, setTemplates] = useState<Template[]>(mockTemplates);
 
@@ -81,10 +69,10 @@ const Templates = () => {
         downloadCounts[download.template_id] = (downloadCounts[download.template_id] || 0) + 1;
       });
 
-      // Update templates with baseline + real download counts (same as Analytics page)
+      // Update templates with real download counts
       setTemplates(mockTemplates.map(template => ({
         ...template,
-        downloadCount: BASELINE_DOWNLOADS[template.id] + (downloadCounts[template.id] || 0)
+        downloadCount: downloadCounts[template.id] || 0
       })));
     };
 
@@ -101,16 +89,16 @@ const Templates = () => {
           table: 'template_downloads'
         },
         (payload) => {
-          console.log('🎉 Real-time: New download detected!', payload);
+          console.log('ðŸŽ‰ Real-time: New download detected!', payload);
           fetchDownloadCounts();
         }
       )
       .subscribe((status) => {
-        console.log('📡 Subscription status:', status);
+        console.log('ðŸ“¡ Subscription status:', status);
       });
 
     return () => {
-      console.log('🔌 Unsubscribing from template downloads channel');
+      console.log('ðŸ”Œ Unsubscribing from template downloads channel');
       supabase.removeChannel(channel);
     };
   }, []);
@@ -193,3 +181,4 @@ const Templates = () => {
 };
 
 export default Templates;
+

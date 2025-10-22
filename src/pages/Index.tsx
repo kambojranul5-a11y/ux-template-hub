@@ -3,8 +3,12 @@ import { ArrowRight, BookOpen, Download, Users } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useAnalyticsTracking } from "@/hooks/useAnalyticsTracking";
 
 const Index = () => {
+  // Track this page visit
+  useAnalyticsTracking('Home');
+
   const templateCategories = [
     {
       title: "Research Templates",

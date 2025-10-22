@@ -230,13 +230,26 @@ WHY THIS TEMPLATE HELPS
       window.URL.revokeObjectURL(url);
 
       // Track download in database
-      const { error } = await supabase
+      console.log('📊 Tracking download for template ID:', template.id);
+      const { data: insertData, error } = await supabase
         .from('template_downloads')
-        .insert({ template_id: template.id });
+        .insert({ template_id: template.id })
+        .select();
 
       if (error) {
-        console.error('Failed to track download:', error);
+        console.error('❌ Failed to track download:', error);
+        console.error('❌ Error details:', {
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+          code: error.code
+        });
+        toast({
+          title: "Download Complete",
+          description: "Template downloaded successfully!",
+        });
       } else {
+        console.log('✅ Download tracked successfully:', insertData);
         toast({
           title: "Success",
           description: "Template downloaded successfully!",
@@ -252,8 +265,25 @@ WHY THIS TEMPLATE HELPS
     }
   };
 
-  const handlePreview = () => {
+  const handlePreview = async () => {
     setPreviewOpen(true);
+    
+    // Track preview click in database
+    try {
+      console.log('👁️ Tracking preview click for template ID:', template.id);
+      const { data, error } = await supabase
+        .from('template_clicks')
+        .insert({ template_id: template.id })
+        .select();
+
+      if (error) {
+        console.error('❌ Failed to track click:', error);
+      } else {
+        console.log('✅ Click tracked successfully:', data);
+      }
+    } catch (error) {
+      console.error('Click tracking failed:', error);
+    }
   };
 
   return (
